@@ -65,7 +65,8 @@ class TweetDetailViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "replySegue" {
-            let composeController = segue.destinationViewController as TweetComposeViewController
+            let nc = segue.destinationViewController as UINavigationController
+            let composeController = nc.topViewController as TweetComposeViewController
             composeController.inReplyToTweet = self.tweet?
         }
     }

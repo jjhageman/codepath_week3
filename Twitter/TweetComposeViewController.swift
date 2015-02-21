@@ -20,6 +20,13 @@ class TweetComposeViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//println(self.navigationController)
+//        self.navigationController?.setNavigationBarHidden(false, animated:true)
+//        var myBackButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+//        myBackButton.setTitle("<", forState: UIControlState.Normal)
+//        myBackButton.sizeToFit()
+//        var myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
+//        self.navigationItem.leftBarButtonItem  = myCustomBackButtonItem
         
         nameLabel.text = user?.name
         handleLabel.text = user?.screenname
@@ -81,7 +88,8 @@ class TweetComposeViewController: UIViewController, UITextFieldDelegate {
     func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
         
         let newLength = countElements(textField.text!) + countElements(string!) - range.length
-        return newLength <= 10 //Bool
+//        return newLength <= 10 //Bool
+        return true
         
     }
 }
