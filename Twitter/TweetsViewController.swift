@@ -43,6 +43,13 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         User.currentUser?.logout()
     }
     
+    @IBAction func onReply(sender: AnyObject) {
+    }
+    @IBAction func onRetweet(sender: AnyObject) {
+    }
+    @IBAction func onFavorite(sender: AnyObject) {
+    }
+    
     func fetchTweets() {
         TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
             if tweets != nil {

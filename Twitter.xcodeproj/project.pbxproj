@@ -34,6 +34,9 @@
 		3FF1DDC11A98685400FBDF12 /* favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF1DDBE1A98685400FBDF12 /* favorite.png */; };
 		3FF1DDC21A98685400FBDF12 /* retweet.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF1DDBF1A98685400FBDF12 /* retweet.png */; };
 		3FF1DDC31A98685400FBDF12 /* reply.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF1DDC01A98685400FBDF12 /* reply.png */; };
+		3FF1DDFD1A9920C000FBDF12 /* retweet_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF1DDFA1A9920C000FBDF12 /* retweet_white.png */; };
+		3FF1DDFE1A9920C000FBDF12 /* reply_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF1DDFB1A9920C000FBDF12 /* reply_white.png */; };
+		3FF1DDFF1A9920C000FBDF12 /* favorite_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF1DDFC1A9920C000FBDF12 /* favorite_white.png */; };
 		BD36B1BAE7EC21123E797D9C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE0B1BFBBD0C319C5C4A5859 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +84,9 @@
 		3FF1DDBE1A98685400FBDF12 /* favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite.png; sourceTree = "<group>"; };
 		3FF1DDBF1A98685400FBDF12 /* retweet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retweet.png; sourceTree = "<group>"; };
 		3FF1DDC01A98685400FBDF12 /* reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply.png; sourceTree = "<group>"; };
+		3FF1DDFA1A9920C000FBDF12 /* retweet_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retweet_white.png; sourceTree = "<group>"; };
+		3FF1DDFB1A9920C000FBDF12 /* reply_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply_white.png; sourceTree = "<group>"; };
+		3FF1DDFC1A9920C000FBDF12 /* favorite_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite_white.png; sourceTree = "<group>"; };
 		ACB5B73B9DD54C1A5227CDC9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		AE0B1BFBBD0C319C5C4A5859 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -186,6 +192,9 @@
 		3F9139951A9707200079C89E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3FF1DDFA1A9920C000FBDF12 /* retweet_white.png */,
+				3FF1DDFB1A9920C000FBDF12 /* reply_white.png */,
+				3FF1DDFC1A9920C000FBDF12 /* favorite_white.png */,
 				3FF1DDBE1A98685400FBDF12 /* favorite.png */,
 				3FF1DDBF1A98685400FBDF12 /* retweet.png */,
 				3FF1DDC01A98685400FBDF12 /* reply.png */,
@@ -335,6 +344,7 @@
 				3FF1DDC11A98685400FBDF12 /* favorite.png in Resources */,
 				3F6B16B21A92906500F2FD1B /* Main.storyboard in Resources */,
 				3FF105C51A95C8ED000AC631 /* Lato-Regular.ttf in Resources */,
+				3FF1DDFD1A9920C000FBDF12 /* retweet_white.png in Resources */,
 				3F9139971A9707620079C89E /* sign-in-with-twitter-link.png in Resources */,
 				3FF105BC1A95C8ED000AC631 /* Lato-Black.ttf in Resources */,
 				3FF105BD1A95C8ED000AC631 /* Lato-BlackItalic.ttf in Resources */,
@@ -343,10 +353,12 @@
 				3FF105BE1A95C8ED000AC631 /* Lato-Bold.ttf in Resources */,
 				3FF105C41A95C8ED000AC631 /* Lato-LightItalic.ttf in Resources */,
 				3FF105BF1A95C8ED000AC631 /* Lato-BoldItalic.ttf in Resources */,
+				3FF1DDFF1A9920C000FBDF12 /* favorite_white.png in Resources */,
 				3FF105C11A95C8ED000AC631 /* Lato-HairlineItalic.ttf in Resources */,
 				3FF1DDC31A98685400FBDF12 /* reply.png in Resources */,
 				3FF105C21A95C8ED000AC631 /* Lato-Italic.ttf in Resources */,
 				3FF1DDC21A98685400FBDF12 /* retweet.png in Resources */,
+				3FF1DDFE1A9920C000FBDF12 /* reply_white.png in Resources */,
 				3F6B16B41A92906500F2FD1B /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -31,12 +31,12 @@ class TweetComposeViewController: UIViewController, UITextFieldDelegate {
         nameLabel.text = user?.name
         handleLabel.text = user?.screenname
         tweetField.placeholder = "What's happening?"
-        tweetField.becomeFirstResponder()
         tweetField.delegate = self
         
         if let inReply = inReplyToTweet {
             tweetField.text = "@\(inReply.user?.screenname! as String!) "
         }
+        tweetField.becomeFirstResponder()
         
         let profileImgUrl = NSURL(string: user!.profileImageUrlBigger!)
         let placeholder = UIImage(named: "no_photo")
