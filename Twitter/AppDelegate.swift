@@ -12,11 +12,29 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var storyboard = UIStoryboard(name: "Main", bundle: nil)
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
+        
+        UINavigationBar.appearance().barTintColor = UIColor(red: 80.0/255.0, green: 171.0/255.0, blue: 241.0/255.0, alpha: 1.0)
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        
+        if User.currentUser != nil {
+            println("Current user detected: \(User.currentUser?.name)")
+            var vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as TweetsViewController
+            var rootViewController = self.window!.rootViewController as UINavigationController
+            rootViewController.pushViewController(vc, animated: true)
+        }
         return true
+    }
+    
+    func userDidLogout() {
+        var vc = storyboard.instantiateInitialViewController() as UIViewController
+        window?.rootViewController = vc
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -41,6 +59,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        TwitterClient.sharedInstance.openUrl(url)
+        return true
+    }
 
 }
 
