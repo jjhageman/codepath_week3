@@ -223,7 +223,7 @@
             </objects>
             <point key="canvasLocation" x="866" y="296"/>
         </scene>
-        <!--Tweet Detail View Controller-->
+        <!--Tweet-->
         <scene sceneID="jzP-J5-6gz">
             <objects>
                 <viewController id="zkr-sG-b39" customClass="TweetDetailViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
@@ -262,10 +262,51 @@
                                 <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4DI-gM-ZkX">
+                                <rect key="frame" x="8" y="199" width="304" height="1"/>
+                                <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GN0-9z-qYh">
+                                <rect key="frame" x="8" y="229" width="304" height="1"/>
+                                <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EfS-AS-jOF">
+                                <rect key="frame" x="55" y="207" width="20" height="13"/>
+                                <state key="normal" image="reply.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="bVj-LK-6sI" kind="modal" identifier="replySegue" id="OMV-5o-1sX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8vd-En-cdl">
+                                <rect key="frame" x="150" y="207" width="23" height="14"/>
+                                <state key="normal" image="retweet.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onRetweet:" destination="zkr-sG-b39" eventType="touchUpInside" id="ojN-fd-Whn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1e-Tk-j8e">
+                                <rect key="frame" x="244" y="205" width="17" height="17"/>
+                                <state key="normal" image="favorite.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onFavorite:" destination="zkr-sG-b39" eventType="touchUpInside" id="ojB-m0-M3w"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Ngf-4o-WFg"/>
+                    <navigationItem key="navigationItem" title="Tweet" id="Ngf-4o-WFg">
+                        <barButtonItem key="rightBarButtonItem" title="New" id="uV9-pl-oix">
+                            <connections>
+                                <segue destination="SKE-8s-vJh" kind="modal" id="QIP-ht-pfi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="handleLabel" destination="Zdi-jj-Kdh" id="GK9-84-2id"/>
                         <outlet property="nameLabel" destination="yP0-eb-U7G" id="MKe-VR-0tj"/>
@@ -340,6 +381,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="favorite.png" width="32" height="31"/>
+        <image name="reply.png" width="37" height="26"/>
+        <image name="retweet.png" width="44" height="26"/>
         <image name="sign-in-with-twitter-link.png" width="141" height="16"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -347,4 +391,8 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="QIP-ht-pfi"/>
+        <segue reference="OMV-5o-1sX"/>
+    </inferredMetricsTieBreakers>
 </document>

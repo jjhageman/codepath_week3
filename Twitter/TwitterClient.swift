@@ -32,6 +32,33 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         })
     }
     
+    func favoriteTweet(tweetId: Int, completion: (tweet: Tweet?, error: NSError?) -> ()) {
+        POST("1.1/favorites/create.json", parameters: ["id": tweetId], success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            var tweet = Tweet(dictionary: response as NSDictionary)
+            completion(tweet: tweet, error: nil)
+            }, failure: {(operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                completion(tweet: nil, error: error)
+        })
+    }
+    
+    func reTweet(tweetId: Int, completion: (tweet: Tweet?, error: NSError?) -> ()) {
+        POST("1.1/statuses/retweet/\(tweetId).json", parameters: nil, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            var tweet = Tweet(dictionary: response as NSDictionary)
+            completion(tweet: tweet, error: nil)
+            }, failure: {(operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                completion(tweet: nil, error: error)
+        })
+    }
+    
+    func replyToTweet(replyText: String, tweetId: Int, completion: (tweet: Tweet?, error: NSError?) -> ()) {
+        POST("1.1/favorites/create.json", parameters: ["status": replyText, "in_reply_to_status_id": tweetId], success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            var tweet = Tweet(dictionary: response as NSDictionary)
+            completion(tweet: tweet, error: nil)
+            }, failure: {(operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                completion(tweet: nil, error: error)
+        })
+    }
+    
     func homeTimelineWithParams(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
         GET("1.1/statuses/home_timeline.json", parameters: params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             var tweets = Tweet.tweetsWithArray(response as [NSDictionary])

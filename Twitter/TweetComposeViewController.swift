@@ -16,6 +16,7 @@ class TweetComposeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tweetField: UITextField!
     
     let user = User.currentUser
+    var inReplyToTweet: Tweet?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,10 @@ class TweetComposeViewController: UIViewController, UITextFieldDelegate {
         tweetField.placeholder = "What's happening?"
         tweetField.becomeFirstResponder()
         tweetField.delegate = self
+        
+        if let inReply = inReplyToTweet {
+            tweetField.text = "@\(inReply.user?.screenname! as String!) "
+        }
         
         let profileImgUrl = NSURL(string: user!.profileImageUrlBigger!)
         let placeholder = UIImage(named: "no_photo")

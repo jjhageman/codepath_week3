@@ -62,5 +62,31 @@ class TweetDetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "replySegue" {
+            let composeController = segue.destinationViewController as TweetComposeViewController
+            composeController.inReplyToTweet = self.tweet?
+        }
+    }
 
+    @IBAction func onRetweet(sender: AnyObject) {
+        TwitterClient.sharedInstance.reTweet(tweet!.id!, completion: { (tweet, error) -> () in
+            if error != nil {
+                println("retweet error: \(error)")
+            } else {
+                
+            }
+        })
+    }
+    
+    @IBAction func onFavorite(sender: AnyObject) {
+        TwitterClient.sharedInstance.favoriteTweet(tweet!.id!, completion: { (tweet, error) -> () in
+            if error != nil {
+                println("favorite error: \(error)")
+            } else {
+                
+            }
+        })
+    }
 }
