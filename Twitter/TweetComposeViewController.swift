@@ -8,35 +8,36 @@
 
 import UIKit
 
-class TweetComposeViewController: UIViewController, UITextFieldDelegate {
+class TweetComposeViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var handleLabel: UILabel!
-    @IBOutlet weak var tweetField: UITextField!
+    @IBOutlet weak var tweetView: UITextView!
     
     let user = User.currentUser
     var inReplyToTweet: Tweet?
+    var counterButton = UIBarButtonItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//println(self.navigationController)
-//        self.navigationController?.setNavigationBarHidden(false, animated:true)
-//        var myBackButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
-//        myBackButton.setTitle("<", forState: UIControlState.Normal)
-//        myBackButton.sizeToFit()
-//        var myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
-//        self.navigationItem.leftBarButtonItem  = myCustomBackButtonItem
+        
+        var nav = self.navigationController?.navigationBar
+        self.navigationItem.setRightBarButtonItems([navigationItem.rightBarButtonItem!, counterButton], animated: true)
         
         nameLabel.text = user?.name
         handleLabel.text = user?.screenname
-        tweetField.placeholder = "What's happening?"
-        tweetField.delegate = self
-        
+
+        tweetView.delegate = self
         if let inReply = inReplyToTweet {
-            tweetField.text = "@\(inReply.user?.screenname! as String!) "
+            tweetView.text = "@\(inReply.user?.screenname! as String!) "
+        } else {
+            tweetView.text = "What's happening?"
+            tweetView.textColor = UIColor.lightGrayColor()
+            tweetView.selectedTextRange = tweetView.textRangeFromPosition(tweetView.beginningOfDocument, toPosition: tweetView.beginningOfDocument)
         }
-        tweetField.becomeFirstResponder()
+        tweetView.becomeFirstResponder()
+        updateNavCounterCount()
         
         let profileImgUrl = NSURL(string: user!.profileImageUrlBigger!)
         let placeholder = UIImage(named: "no_photo")
@@ -74,7 +75,7 @@ class TweetComposeViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func onTweet(sender: AnyObject) {
-        var tweetText = tweetField.text
+        var tweetText = tweetView.text
         TwitterClient.sharedInstance.postNewTweet(tweetText, completion: { (tweet, error) -> () in
             if error != nil {
                 println("post status update failed: \(error)")
@@ -85,11 +86,50 @@ class TweetComposeViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
-    func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool {
+    func updateNavCounterCount() {
+        counterButton.title = String(140 - countElements(tweetView.text))
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         
-        let newLength = countElements(textField.text!) + countElements(string!) - range.length
-//        return newLength <= 10 //Bool
+        // Combine the textView text and the replacement text to
+        // create the updated text string
+        let currentText:NSString = textView.text
+        let updatedText = currentText.stringByReplacingCharactersInRange(range, withString:text)
+        
+        // If updated text view will be empty, add the placeholder
+        // and set the cursor to the beginning of the text view
+        if countElements(updatedText) == 0 {
+            
+            textView.text = "What's happening?"
+            textView.textColor = UIColor.lightGrayColor()
+            
+            textView.selectedTextRange = textView.textRangeFromPosition(textView.beginningOfDocument, toPosition: textView.beginningOfDocument)
+            
+            return false
+        }
+            
+            // Else if the text view's placeholder is showing and the
+            // length of the replacement string is greater than 0, clear
+            // the text view and set its color to black to prepare for
+            // the user's entry
+        else if textView.textColor == UIColor.lightGrayColor() && countElements(text) > 0 {
+            textView.text = nil
+            textView.textColor = UIColor.blackColor()
+        }
+        
         return true
-        
+    }
+    
+    func textViewDidChange(textView: UITextView) {
+        updateNavCounterCount()
+    }
+    
+    func textViewDidChangeSelection(textView: UITextView) {
+        if self.view.window != nil {
+            if textView.textColor == UIColor.lightGrayColor() {
+                textView.selectedTextRange = textView.textRangeFromPosition(textView.beginningOfDocument, toPosition: textView.beginningOfDocument)
+            }
+        }
     }
 }

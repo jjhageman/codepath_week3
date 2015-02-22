@@ -24,15 +24,18 @@ PODS:
     - AFNetworking/NSURLConnection (~> 2.5.0)
     - AFNetworking/NSURLSession (~> 2.5.0)
   - MBProgressHUD (0.9)
+  - TTTAttributedLabel (1.13.2)
 
 DEPENDENCIES:
   - AFNetworking
   - BDBOAuth1Manager
   - MBProgressHUD
+  - TTTAttributedLabel
 
 SPEC CHECKSUMS:
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
   BDBOAuth1Manager: 274574557077abc873fc5688abe8b991e782749c
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
+  TTTAttributedLabel: 7c4592f9a806badb8b48dc634cb9800447c51594
 
 COCOAPODS: 0.35.0

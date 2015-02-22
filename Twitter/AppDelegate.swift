@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         
         if User.currentUser != nil {
-            println("Current user detected: \(User.currentUser?.name)")
             var vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as TweetsViewController
             var rootViewController = self.window!.rootViewController as UINavigationController
             rootViewController.pushViewController(vc, animated: true)

@@ -8,12 +8,13 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ReplyButtonCellDelegate {
     
     @IBOutlet weak var tweetView: UITableView!
     let tweetCellId = "tweetCellIdentifier"
     var refreshControl: UIRefreshControl!
     var tweets: [Tweet]?
+    var replyTweet: Tweet?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,13 +44,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         User.currentUser?.logout()
     }
     
-    @IBAction func onReply(sender: AnyObject) {
-    }
-    @IBAction func onRetweet(sender: AnyObject) {
-    }
-    @IBAction func onFavorite(sender: AnyObject) {
-    }
-    
     func fetchTweets() {
         TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
             if tweets != nil {
@@ -72,18 +66,31 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 tweetView.deselectRowAtIndexPath(indexPath, animated: true)
             }
         }
+        if segue.identifier == "replySegue" {
+            if let tweet = self.replyTweet {
+                let nc = segue.destinationViewController as UINavigationController
+                let composeController = nc.topViewController as TweetComposeViewController
+                composeController.inReplyToTweet = tweet
+            }
+        }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tweetView.dequeueReusableCellWithIdentifier(tweetCellId, forIndexPath: indexPath) as TweetsTableViewCell
 
         if let tweet = tweets?[indexPath.row] {
+            cell.tweet = tweet
+            cell.delegate = self
             if let user = tweet.user as User! {
                 cell.nameLabel.text = user.name
                 cell.handleLabel.text = "@\(user.screenname!)"
                 cell.tweetLabel.text = tweet.text
                 
+                cell.retweetCountLabel.text = tweet.retweetCount > 0 ? String(tweet.retweetCount!) : ""
+                cell.favoriteCountLabel.text = tweet.favoriteCount > 0 ? String(tweet.favoriteCount!) : ""
+                
                 if let imageUrl = user.profileImageUrlBigger {
+                    let profileImgUrl = NSURL(string: imageUrl)
                     let placeholder = UIImage(named: "no_photo")
                     
                     let imageRequestSuccess = {
@@ -96,14 +103,14 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                             cell.userImage.alpha = 1.0
                         })
                         
-                        cell.userImage.setImageWithURL(NSURL(string: imageUrl))
+                        cell.userImage.setImageWithURL(profileImgUrl)
                     }
                     let imageRequestFailure = {
                         (request : NSURLRequest!, response : NSHTTPURLResponse!, error : NSError!) -> Void in
                         NSLog("imageRequrestFailure")
                     }
                     
-                    let urlRequest = NSURLRequest(URL: NSURL(string: imageUrl)!)
+                    let urlRequest = NSURLRequest(URL: profileImgUrl!)
                     
                     cell.userImage.setImageWithURLRequest(urlRequest, placeholderImage: placeholder, success: imageRequestSuccess, failure: imageRequestFailure)
                 }
@@ -118,5 +125,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         } else {
             return 0
         }
+    }
+    
+    func onReplyButtonCellPress(cell: TweetsTableViewCell) {
+        println("reply button clicked: \(cell.tweet?.id)")
+        self.replyTweet = cell.tweet
     }
 }
