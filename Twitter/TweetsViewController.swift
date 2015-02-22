@@ -85,7 +85,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 cell.nameLabel.text = user.name
                 cell.handleLabel.text = "@\(user.screenname!)"
                 cell.tweetLabel.text = tweet.text
-                
+                let timeAgo = timeAgoSinceDate(tweet.createdAt!, numericDates: true)
+                cell.timestampLabel.text = String(timeAgo)
                 cell.retweetCountLabel.text = tweet.retweetCount > 0 ? String(tweet.retweetCount!) : ""
                 cell.favoriteCountLabel.text = tweet.favoriteCount > 0 ? String(tweet.favoriteCount!) : ""
                 
@@ -130,5 +131,32 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     func onReplyButtonCellPress(cell: TweetsTableViewCell) {
         println("reply button clicked: \(cell.tweet?.id)")
         self.replyTweet = cell.tweet
+    }
+    
+    //  "Time ago" function for Swift (based on MatthewYork's DateTools for Objective-C)
+    //  https://gist.github.com/minorbug/468790060810e0d29545
+    func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {
+        let calendar = NSCalendar.currentCalendar()
+        let unitFlags = NSCalendarUnit.CalendarUnitMinute | NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitWeekOfYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitSecond
+        let now = NSDate()
+        let earliest = now.earlierDate(date)
+        let latest = (earliest == now) ? date : now
+        let components:NSDateComponents = calendar.components(unitFlags, fromDate: earliest, toDate: latest, options: nil)
+        
+        if (components.year >= 1) {
+            return "\(components.year)y"
+        } else if (components.month >= 1) {
+            return "\(components.month)m"
+        } else if (components.weekOfYear >= 1) {
+            return "\(components.weekOfYear)w"
+        } else if (components.day >= 1) {
+            return "\(components.day)d"
+        } else if (components.hour >= 1) {
+            return "\(components.hour)h"
+        } else if (components.minute >= 1) {
+            return "\(components.minute)m"
+        } else {
+            return "\(components.second)s"
+        }
     }
 }
