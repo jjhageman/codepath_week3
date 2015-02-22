@@ -85,7 +85,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Twitter Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y28-OA-4d4">
                                 <rect key="frame" x="64" y="72" width="74" height="14.5"/>
                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@handle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KqK-en-RlH">
@@ -340,7 +340,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Twitter Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yP0-eb-U7G">
                                 <rect key="frame" x="64" y="72" width="74" height="14.5"/>
                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@handle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zdi-jj-Kdh">
@@ -354,7 +354,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Hi @RaviVora! We're excited to spotlight">
                                         <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="14" name="Lato-Regular"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.75"/>
                                         </attributes>
@@ -446,15 +446,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M9f-Jo-rtV">
-                                <rect key="frame" x="90" y="212" width="13" height="14"/>
+                                <rect key="frame" x="90" y="212" width="13.5" height="14"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="11"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YtP-by-SlO">
-                                <rect key="frame" x="8" y="212" width="13" height="14"/>
+                                <rect key="frame" x="8" y="212" width="13" height="13.5"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="11"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -463,6 +463,7 @@
                             <constraint firstItem="ojE-w8-ulz" firstAttribute="top" secondItem="hRM-Lf-kc8" secondAttribute="bottom" constant="8" id="37a-VH-rT5"/>
                             <constraint firstItem="LDv-dU-csl" firstAttribute="leading" secondItem="ngg-HZ-I34" secondAttribute="leading" constant="8" id="3cl-3G-9d5"/>
                             <constraint firstItem="LDv-dU-csl" firstAttribute="top" secondItem="X12-S1-TF9" secondAttribute="bottom" constant="10" id="4mf-oA-0gO"/>
+                            <constraint firstItem="L72-Nq-mhs" firstAttribute="top" secondItem="hif-Eb-lW4" secondAttribute="bottom" constant="9" id="5cH-d1-Wqk"/>
                             <constraint firstItem="p4k-4D-tJW" firstAttribute="leading" secondItem="YtP-by-SlO" secondAttribute="trailing" constant="3" id="5oQ-Sb-dkj"/>
                             <constraint firstItem="EfS-AS-jOF" firstAttribute="leading" secondItem="ngg-HZ-I34" secondAttribute="leading" constant="27" id="5zm-EF-uZe"/>
                             <constraint firstItem="Zdi-jj-Kdh" firstAttribute="leading" secondItem="ojE-w8-ulz" secondAttribute="trailing" constant="8" id="AcH-sl-tao"/>
@@ -477,7 +478,6 @@
                             <constraint firstItem="p4k-4D-tJW" firstAttribute="centerY" secondItem="M9f-Jo-rtV" secondAttribute="centerY" id="ZTc-2m-3u4"/>
                             <constraint firstItem="X12-S1-TF9" firstAttribute="leading" secondItem="ngg-HZ-I34" secondAttribute="leading" constant="8" id="arg-cn-avB"/>
                             <constraint firstItem="4DI-gM-ZkX" firstAttribute="top" secondItem="hif-Eb-lW4" secondAttribute="bottom" constant="35" id="awi-lB-T2n"/>
-                            <constraint firstItem="YtP-by-SlO" firstAttribute="top" secondItem="hif-Eb-lW4" secondAttribute="bottom" constant="9" id="c3N-Ci-1v9"/>
                             <constraint firstItem="P1e-Tk-j8e" firstAttribute="leading" secondItem="8vd-En-cdl" secondAttribute="trailing" constant="50" id="fRW-Up-KU8"/>
                             <constraint firstItem="4DI-gM-ZkX" firstAttribute="leading" secondItem="ngg-HZ-I34" secondAttribute="leading" constant="8" id="hai-JA-3wT"/>
                             <constraint firstItem="EfS-AS-jOF" firstAttribute="top" secondItem="4DI-gM-ZkX" secondAttribute="bottom" constant="11" id="hb1-Al-Yav"/>
@@ -502,16 +502,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="favoriteCount" destination="M9f-Jo-rtV" id="1Qo-ai-8dY"/>
                         <outlet property="handleLabel" destination="Zdi-jj-Kdh" id="GK9-84-2id"/>
                         <outlet property="nameLabel" destination="yP0-eb-U7G" id="MKe-VR-0tj"/>
                         <outlet property="profileImage" destination="ojE-w8-ulz" id="eAo-e2-frZ"/>
+                        <outlet property="retweetCount" destination="YtP-by-SlO" id="hKd-8e-Kyo"/>
                         <outlet property="timestampLabel" destination="LDv-dU-csl" id="9Qp-wY-0Ls"/>
                         <outlet property="tweetLabel" destination="X12-S1-TF9" id="iPH-5t-L2r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yK4-Ys-hg0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1412" y="296"/>
+            <point key="canvasLocation" x="1412.5" y="296"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PVO-Yc-BSc">

@@ -15,6 +15,9 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var handleLabel: UILabel!
     @IBOutlet weak var tweetLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var retweetCount: UILabel!
+    @IBOutlet weak var favoriteCount: UILabel!
+
     
     var tweet: Tweet?
 
@@ -30,6 +33,11 @@ class TweetDetailViewController: UIViewController {
                 dateFormatter.dateFormat = "M/d/yy, h:mm a"
                 let str = dateFormatter.stringFromDate(tweetUnwrapped.createdAt!)
                 timestampLabel.text = str
+                
+                retweetCount.text = tweetUnwrapped.retweetCount! > 0 ? String(tweetUnwrapped.retweetCount!) : ""
+                favoriteCount.text = tweetUnwrapped.favoriteCount > 0 ? String(tweetUnwrapped.favoriteCount!) : ""
+                
+
                 
                 let profileImgUrl = NSURL(string: user.profileImageUrlBigger!)
                 let placeholder = UIImage(named: "no_photo")
