@@ -46,12 +46,12 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     func fetchTweets() {
         TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
-            if tweets != nil {
+            if error != nil {
+                println("Error fetching tweets: \(error)")
+            } else {
                 self.tweets = tweets
                 self.tweetView?.reloadData()
                 MBProgressHUD.hideHUDForView(self.view, animated: true)
-            } else {
-                
             }
             self.refreshControl.endRefreshing()
         })

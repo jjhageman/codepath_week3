@@ -83,14 +83,15 @@ class TweetComposeViewController: UIViewController, UITextViewDelegate {
             if error != nil {
                 println("post status update failed: \(error)")
             } else {
-                
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
             
         })
     }
     
     func updateNavCounterCount() {
-        if tweetComposeView.textColor == UIColor.lightGrayColor() {
+        println("tweetComposeView: \(tweetComposeView), tweetComposeView.textColor: \(tweetComposeView.textColor)")
+        if tweetComposeView.textColor? == UIColor.lightGrayColor() {
             counterButton.title = "140"
         } else {
             counterButton.title = String(140 - countElements(tweetComposeView.text))
@@ -121,7 +122,7 @@ class TweetComposeViewController: UIViewController, UITextViewDelegate {
             // length of the replacement string is greater than 0, clear
             // the text view and set its color to black to prepare for
             // the user's entry
-        else if textView.textColor == UIColor.lightGrayColor() && countElements(text) > 0 {
+        else if textView.textColor? == UIColor.lightGrayColor() && countElements(text) > 0 {
             textView.text = nil
             textView.textColor = UIColor.blackColor()
         }
@@ -135,7 +136,7 @@ class TweetComposeViewController: UIViewController, UITextViewDelegate {
     
     func textViewDidChangeSelection(textView: UITextView) {
         if self.view.window != nil {
-            if textView.textColor == UIColor.lightGrayColor() {
+            if textView.textColor? == UIColor.lightGrayColor() {
                 textView.selectedTextRange = textView.textRangeFromPosition(textView.beginningOfDocument, toPosition: textView.beginningOfDocument)
             }
         }

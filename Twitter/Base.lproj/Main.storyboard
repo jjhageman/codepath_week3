@@ -501,10 +501,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="favoriteCount" destination="M9f-Jo-rtV" id="1Qo-ai-8dY"/>
+                        <outlet property="favoriteLabel" destination="L72-Nq-mhs" id="aZa-RS-lcU"/>
                         <outlet property="handleLabel" destination="Zdi-jj-Kdh" id="GK9-84-2id"/>
                         <outlet property="nameLabel" destination="yP0-eb-U7G" id="MKe-VR-0tj"/>
                         <outlet property="profileImage" destination="ojE-w8-ulz" id="eAo-e2-frZ"/>
                         <outlet property="retweetCount" destination="YtP-by-SlO" id="hKd-8e-Kyo"/>
+                        <outlet property="retweetLabel" destination="p4k-4D-tJW" id="Ko0-Ho-gr2"/>
                         <outlet property="timestampLabel" destination="LDv-dU-csl" id="9Qp-wY-0Ls"/>
                         <outlet property="tweetLabel" destination="X12-S1-TF9" id="iPH-5t-L2r"/>
                     </connections>
@@ -589,6 +591,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="OMV-5o-1sX"/>
+        <segue reference="uzt-4R-ePO"/>
     </inferredMetricsTieBreakers>
 </document>

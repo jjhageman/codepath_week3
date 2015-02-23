@@ -17,6 +17,8 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var retweetCount: UILabel!
     @IBOutlet weak var favoriteCount: UILabel!
+    @IBOutlet weak var retweetLabel: UILabel!
+    @IBOutlet weak var favoriteLabel: UILabel!
     
     var tweet: Tweet?
 
@@ -30,11 +32,6 @@ class TweetDetailViewController: UIViewController {
             if let user = tweetUnwrapped.user as User! {
                 nameLabel.text = user.name
                 handleLabel.text = "@\(user.screenname!)"
-                
-//                tweetLabel.linkAttributes = [NSForegroundColorAttributeName : linkColor]
-//                tweetLabel.activeLinkAttributes = [NSForegroundColorAttributeName : linkActiveColor]
-//                tweetLabel.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
-//                tweetLabel.delegate = self
                 tweetLabel.text = tweetUnwrapped.text
                 
                 let dateFormatter = NSDateFormatter()
@@ -42,8 +39,19 @@ class TweetDetailViewController: UIViewController {
                 let str = dateFormatter.stringFromDate(tweetUnwrapped.createdAt!)
                 timestampLabel.text = str
                 
-                retweetCount.text = tweetUnwrapped.retweetCount! > 0 ? String(tweetUnwrapped.retweetCount!) : ""
-                favoriteCount.text = tweetUnwrapped.favoriteCount > 0 ? String(tweetUnwrapped.favoriteCount!) : ""
+                if tweetUnwrapped.retweetCount! > 0 {
+                    retweetCount.text = String(tweetUnwrapped.retweetCount!)
+                } else {
+                    retweetCount.hidden = true
+                    retweetLabel.hidden = true
+                }
+                
+                if tweetUnwrapped.favoriteCount > 0 {
+                    favoriteCount.text = String(tweetUnwrapped.favoriteCount!)
+                } else {
+                    favoriteCount.hidden = true
+                    favoriteLabel.hidden = true
+                }
                 
 
                 

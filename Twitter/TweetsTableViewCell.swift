@@ -57,7 +57,8 @@ class TweetsTableViewCell: UITableViewCell {
             if error != nil {
                 println("favorite error: \(error)")
             } else {
-                
+                var favButton = sender as UIButton
+                favButton.tintColor = UIColor.yellowColor()
             }
         })
     }
