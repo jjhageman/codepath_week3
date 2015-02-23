@@ -13,7 +13,9 @@ class TweetComposeViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var handleLabel: UILabel!
-    @IBOutlet weak var tweetView: UITextView!
+    @IBOutlet weak var tweetComposeView: UITextView!
+
+    let composePlaceholder = "What's happening?"
     
     let user = User.currentUser
     var inReplyToTweet: Tweet?
@@ -22,21 +24,22 @@ class TweetComposeViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        counterButton.tintColor = UIColor.lightTextColor()
         var nav = self.navigationController?.navigationBar
         self.navigationItem.setRightBarButtonItems([navigationItem.rightBarButtonItem!, counterButton], animated: true)
         
         nameLabel.text = user?.name
         handleLabel.text = user?.screenname
 
-        tweetView.delegate = self
+        tweetComposeView.delegate = self
         if let inReply = inReplyToTweet {
-            tweetView.text = "@\(inReply.user?.screenname! as String!) "
+            tweetComposeView.text = "@\(inReply.user?.screenname! as String!) "
         } else {
-            tweetView.text = "What's happening?"
-            tweetView.textColor = UIColor.lightGrayColor()
-            tweetView.selectedTextRange = tweetView.textRangeFromPosition(tweetView.beginningOfDocument, toPosition: tweetView.beginningOfDocument)
+            tweetComposeView.text = composePlaceholder
+            tweetComposeView.textColor = UIColor.lightGrayColor()
+            tweetComposeView.selectedTextRange = tweetComposeView.textRangeFromPosition(tweetComposeView.beginningOfDocument, toPosition: tweetComposeView.beginningOfDocument)
         }
-        tweetView.becomeFirstResponder()
+        tweetComposeView.becomeFirstResponder()
         updateNavCounterCount()
         
         let profileImgUrl = NSURL(string: user!.profileImageUrlBigger!)
@@ -75,7 +78,7 @@ class TweetComposeViewController: UIViewController, UITextViewDelegate {
     }
 
     @IBAction func onTweet(sender: AnyObject) {
-        var tweetText = tweetView.text
+        var tweetText = tweetComposeView.text
         TwitterClient.sharedInstance.postNewTweet(tweetText, completion: { (tweet, error) -> () in
             if error != nil {
                 println("post status update failed: \(error)")
@@ -87,7 +90,11 @@ class TweetComposeViewController: UIViewController, UITextViewDelegate {
     }
     
     func updateNavCounterCount() {
-        counterButton.title = String(140 - countElements(tweetView.text))
+        if tweetComposeView.textColor == UIColor.lightGrayColor() {
+            counterButton.title = "140"
+        } else {
+            counterButton.title = String(140 - countElements(tweetComposeView.text))
+        }
     }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
@@ -101,8 +108,9 @@ class TweetComposeViewController: UIViewController, UITextViewDelegate {
         // and set the cursor to the beginning of the text view
         if countElements(updatedText) == 0 {
             
-            textView.text = "What's happening?"
+            textView.text = composePlaceholder
             textView.textColor = UIColor.lightGrayColor()
+            updateNavCounterCount()
             
             textView.selectedTextRange = textView.textRangeFromPosition(textView.beginningOfDocument, toPosition: textView.beginningOfDocument)
             

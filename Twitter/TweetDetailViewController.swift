@@ -17,16 +17,24 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var retweetCount: UILabel!
     @IBOutlet weak var favoriteCount: UILabel!
-
     
     var tweet: Tweet?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let linkColor = UIColor(red: 0.203, green: 0.329, blue: 0.835, alpha: 1)
+        let linkActiveColor = UIColor.blackColor()
+        
         if let tweetUnwrapped = self.tweet {
             if let user = tweetUnwrapped.user as User! {
                 nameLabel.text = user.name
                 handleLabel.text = "@\(user.screenname!)"
+                
+//                tweetLabel.linkAttributes = [NSForegroundColorAttributeName : linkColor]
+//                tweetLabel.activeLinkAttributes = [NSForegroundColorAttributeName : linkActiveColor]
+//                tweetLabel.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
+//                tweetLabel.delegate = self
                 tweetLabel.text = tweetUnwrapped.text
                 
                 let dateFormatter = NSDateFormatter()

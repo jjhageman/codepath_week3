@@ -136,7 +136,7 @@
                         <outlet property="handleLabel" destination="KqK-en-RlH" id="uyB-JL-Vtd"/>
                         <outlet property="nameLabel" destination="y28-OA-4d4" id="35t-5v-XiP"/>
                         <outlet property="profileImage" destination="ziV-bP-HTn" id="BqD-IV-7y1"/>
-                        <outlet property="tweetView" destination="HnV-qx-uoO" id="BB5-5y-zPp"/>
+                        <outlet property="tweetComposeView" destination="HnV-qx-uoO" id="aQG-hY-8p5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y6r-X7-wwZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -220,7 +220,6 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="onRetweet:" destination="LhS-yN-FR4" eventType="touchUpInside" id="iDZ-U1-aDm"/>
                                                         <action selector="retweetButton:" destination="vYP-14-iyq" eventType="touchUpInside" id="BDw-a4-h5F"/>
                                                     </connections>
                                                 </button>
@@ -235,7 +234,6 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="favoriteButton:" destination="vYP-14-iyq" eventType="touchUpInside" id="uuh-2H-Zyj"/>
-                                                        <action selector="onFavorite:" destination="LhS-yN-FR4" eventType="touchUpInside" id="5sf-bi-E7A"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMj-XB-vUL">
@@ -591,6 +589,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2jt-5b-5h9"/>
+        <segue reference="OMV-5o-1sX"/>
     </inferredMetricsTieBreakers>
 </document>
